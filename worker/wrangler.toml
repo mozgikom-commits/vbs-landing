@@ -1,0 +1,8 @@
+name = "vbs-lead-proxy"
+main = "lead-worker.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# Секреты задаются командами (в файле их быть не должно):
+#   npx wrangler secret put TG_BOT_TOKEN
+#   npx wrangler secret put TG_CHAT_ID
