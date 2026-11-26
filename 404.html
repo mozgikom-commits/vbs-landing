@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>404 — страница не найдена | ВБС, Приморский край</title>
+<meta name="description" content="Запрошенная страница не найдена. Вернитесь на главную страницу набора на службу по контракту в Войска беспилотных систем.">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;500;700&display=swap');
+
+  :root {
+    --t-bg: #121411; --t-bg-alt: #181b16; --t-card: #1d211b; --t-card-hover: #242921;
+    --t-border: #2e342a; --t-accent: #e86f1c; --t-olive: #6d7c59;
+    --t-text: #f2f4f0; --t-muted: #9ca396; --t-white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    font-family: 'Inter', sans-serif;
+    background:
+      linear-gradient(180deg, rgba(18,20,17,0.94) 0%, rgba(18,20,17,0.99) 100%),
+      url('https://optim.tildacdn.com/tila6661-6131-4634-b535-393038376639/-/format/webp/18.jpeg.webp') center / cover no-repeat,
+      var(--t-bg);
+    color: var(--t-text);
+    line-height: 1.55;
+  }
+
+  .t-vbs-wrap { width: 100%; max-width: 720px; }
+
+  .t-vbs-hud-box {
+    background: var(--t-card);
+    border: 1px solid var(--t-border);
+    position: relative;
+    padding: 44px 36px;
+    text-align: center;
+  }
+  .t-vbs-hud-box::before, .t-vbs-hud-box::after {
+    content: ''; position: absolute; width: 14px; height: 14px;
+    border-color: var(--t-accent); border-style: solid; pointer-events: none;
+  }
+  .t-vbs-hud-box::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .t-vbs-hud-box::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .t-vbs-kicker {
+    display: inline-block; font-family: 'Oswald', sans-serif; font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--t-accent);
+    background: rgba(232,111,28,0.12); border: 1px solid rgba(232,111,28,0.35);
+    padding: 6px 14px; margin-bottom: 22px;
+  }
+
+  .t-vbs-code {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: clamp(78px, 17vw, 132px); line-height: 0.9;
+    color: var(--t-accent); letter-spacing: 4px; margin: 0 0 10px 0;
+  }
+
+  .t-vbs-h1 {
+    font-family: 'Oswald', sans-serif; text-transform: uppercase;
+    font-size: clamp(22px, 4vw, 32px); line-height: 1.15; margin: 0 0 16px 0;
+  }
+
+  .t-vbs-text { font-size: clamp(15px, 2vw, 17px); color: var(--t-muted); margin: 0 0 30px 0; }
+  .t-vbs-text code { font-family: 'Oswald', sans-serif; color: var(--t-text); background: var(--t-bg-alt); border: 1px solid var(--t-border); padding: 2px 8px; font-size: 14px; letter-spacing: 0.5px; }
+
+  .t-vbs-btn-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  .t-vbs-btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+    padding: 14px 30px; background: var(--t-white); color: #111310;
+    font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; transition: 0.2s;
+  }
+  .t-vbs-btn-primary:hover { background: var(--t-accent); color: var(--t-white); }
+
+  .t-vbs-btn-outline {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+    padding: 14px 26px; background: transparent; color: var(--t-text);
+    border: 1px solid var(--t-border); font-family: 'Oswald', sans-serif;
+    font-size: 15px; letter-spacing: 0.8px; text-transform: uppercase;
+    text-decoration: none; transition: 0.2s;
+  }
+  .t-vbs-btn-outline:hover { border-color: var(--t-accent); color: var(--t-accent); }
+
+  .t-vbs-legal {
+    margin-top: 24px; text-align: center; font-size: 12px;
+    color: var(--t-muted); line-height: 1.6;
+  }
+  .t-vbs-legal a { color: var(--t-olive); text-decoration: none; }
+  .t-vbs-legal a:hover { color: var(--t-accent); }
+
+  @media (max-width: 640px) {
+    body { padding: 20px 14px; }
+    .t-vbs-hud-box { padding: 32px 20px; }
+    .t-vbs-btn-primary, .t-vbs-btn-outline { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<main class="t-vbs-wrap">
+  <div class="t-vbs-hud-box">
+    <span class="t-vbs-kicker">Ошибка навигации</span>
+    <p class="t-vbs-code">404</p>
+    <h1 class="t-vbs-h1">Страница не найдена</h1>
+    <p class="t-vbs-text">
+      Такой страницы не существует или адрес введён с ошибкой.<br>
+      Проверьте ссылку — или вернитесь на главную страницу набора
+      в Войска беспилотных систем.
+    </p>
+    <div class="t-vbs-btn-group">
+      <a href="/vbs-landing/" class="t-vbs-btn-primary">На главную &rarr;</a>
+      <a href="/vbs-landing/#vbs-form" class="t-vbs-btn-outline">Подать заявку</a>
+    </div>
+  </div>
+
+  <p class="t-vbs-legal">
+    Набор на военную службу по контракту в Войска беспилотных систем.<br>
+    Октябрьский район, Приморский край &middot; <a href="/vbs-landing/">mozgikom-commits.github.io/vbs-landing</a>
+  </p>
+</main>
+
+</body>
+</html>
