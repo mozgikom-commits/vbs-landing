@@ -42,9 +42,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;500;700&display=swap');
 
   :root {
-    --t-bg: #f5f7fb; --t-bg-alt: #e9eff8; --t-card: #ffffff; --t-card-hover: #f7fafd;
+    --t-bg: #ffffff; --t-bg-alt: #eef2f8; --t-card: #ffffff; --t-card-hover: #f7fafd;
     --t-border: #d2dbe8; --t-accent: #0039a6; --t-olive: #1f6fb2; --t-red: #d52b1e;
-    --t-text: #0f1b2e; --t-muted: #566680; --t-white: #ffffff;
+    --t-text: #0b1220; --t-muted: #52617a; --t-white: #ffffff;
+    --t-ink: #0b1220; --t-ink-2: #12203a; --t-on-ink: #e9eff9; --t-on-ink-soft: rgba(233,239,249,0.72);
   }
 
   body { margin: 0; background: var(--t-bg); }
@@ -53,7 +54,7 @@
   .t-vbs-root { font-family: 'Inter', sans-serif; background: var(--t-bg); color: var(--t-text); line-height: 1.55; overflow-x: hidden; }
   .t-vbs-root *, .t-vbs-root *::before, .t-vbs-root *::after { box-sizing: border-box; }
   .t-vbs-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-  .t-vbs-sec { padding: 72px 0; border-bottom: 1px solid var(--t-border); }
+  .t-vbs-sec { padding: 72px 0; border-bottom: 1px solid #dbe3ee; }
   .t-vbs-sec-alt { background: var(--t-bg-alt); }
 
   .t-vbs-hud-box {
@@ -112,9 +113,20 @@
   /* Акцентное слово в заголовке */
   .t-vbs-hl { color: var(--t-accent); }
 
-  /* Первый экран светлый: фото осталось подложкой справа, текст тёмный */
-  .t-vbs-hero .t-vbs-h1 { max-width: 700px; }
-  .t-vbs-hero .t-vbs-headerbar { border-bottom-color: var(--t-border); }
+  /* Первый экран — тёмный блок: контраст к светлому телу страницы */
+  .t-vbs-hero { color: var(--t-on-ink); }
+  .t-vbs-hero .t-vbs-h1 { color: var(--t-white); max-width: 700px; }
+  .t-vbs-hero .t-vbs-lead { color: rgba(255,255,255,0.82); }
+  .t-vbs-hero .t-vbs-brand-name { color: var(--t-white); }
+  .t-vbs-hero .t-vbs-brand-sub { color: rgba(255,255,255,0.72); }
+  .t-vbs-hero .t-vbs-headerbar { border-bottom-color: rgba(255,255,255,0.18); }
+  .t-vbs-hero .t-vbs-hl { color: #7fb0ff; }
+  .t-vbs-hero .t-vbs-kicker { color: var(--t-white); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+  .t-vbs-hero .t-vbs-btn-primary { background: linear-gradient(180deg, #ffffff 0%, #e8eef8 100%); color: var(--t-ink); box-shadow: 0 1px 1px rgba(0,0,0,0.25), 0 6px 16px rgba(0,0,0,0.35); }
+  .t-vbs-hero .t-vbs-btn-primary:hover { background: linear-gradient(180deg, #e6392a 0%, var(--t-red) 100%); color: var(--t-white); }
+  .t-vbs-hero .t-vbs-btn-outline { color: var(--t-white); border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+  .t-vbs-hero .t-vbs-btn-outline:hover { background: var(--t-white); border-color: var(--t-white); color: var(--t-ink); }
+  .t-vbs-hero .t-vbs-header-cta { background: linear-gradient(180deg, #2f6ee0 0%, #1b4fc0 100%); border-color: #1b4fc0; }
 
   @media (max-width: 640px) {
     .t-vbs-sec { padding: 48px 0; }
@@ -131,7 +143,7 @@
     .t-vbs-hero {
       padding: 96px 0 76px;
       background:
-        linear-gradient(90deg, rgba(245,247,251,1) 0%, rgba(245,247,251,0.99) 46%, rgba(245,247,251,0.74) 66%, rgba(245,247,251,0.06) 100%),
+        linear-gradient(90deg, rgba(8,15,30,0.94) 0%, rgba(8,15,30,0.76) 46%, rgba(8,15,30,0.20) 100%),
         url('hero.webp') right center / cover no-repeat,
         var(--t-bg);
       border-bottom: 2px solid var(--t-accent);
@@ -145,13 +157,13 @@
     @media (max-width: 860px) {
       .t-vbs-hero {
         padding: 0 0 44px;
-        background: var(--t-bg);
+        background: var(--t-ink);
       }
       .t-vbs-hero-photo { display: block; position: relative; margin: 0 0 26px; overflow: hidden; }
       .t-vbs-hero-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 32%; }
       .t-vbs-hero-photo::after {
         content: ''; position: absolute; inset: 0; pointer-events: none;
-        background: linear-gradient(180deg, rgba(15,27,46,0.05) 0%, rgba(15,27,46,0) 30%, rgba(245,247,251,0.86) 84%, var(--t-bg) 100%);
+        background: linear-gradient(180deg, rgba(8,15,30,0.10) 0%, rgba(8,15,30,0) 30%, rgba(11,18,32,0.88) 84%, var(--t-ink) 100%);
       }
       .t-vbs-kpi-grid { grid-template-columns: 1fr; }
     }
@@ -295,17 +307,20 @@
     .t-vbs-step-num { font-family: 'Oswald', sans-serif; font-size: 40px; font-weight: 700; color: var(--t-accent); line-height: 1; margin-bottom: 10px; }
     .t-vbs-spec-banner {
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.87) 100%),
+        linear-gradient(90deg, rgba(11,18,32,0.97) 0%, rgba(18,32,58,0.92) 100%),
         url('https://optim.tildacdn.com/tila6661-6131-4634-b535-393038376639/-/format/webp/18.jpeg.webp') center / cover no-repeat;
-      border: 1px solid var(--t-border);
-      border-left: 4px solid var(--t-accent);
+      border: 1px solid #1e2d4a;
+      border-left: 4px solid var(--t-red);
       border-radius: 16px;
       padding: 28px;
+      color: var(--t-on-ink);
       box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 8px 24px rgba(15,27,46,0.07);
     }
     .t-vbs-spec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; margin: 18px 0 0 0; padding: 0; list-style: none; }
-    .t-vbs-spec-list li { position: relative; padding-left: 22px; font-size: 14px; }
-    .t-vbs-spec-list li::before { content: '▪'; position: absolute; left: 0; color: var(--t-accent); }
+    .t-vbs-spec-list li { position: relative; padding-left: 22px; font-size: 14px; color: rgba(233,239,249,0.82); }
+    .t-vbs-spec-list li strong { color: var(--t-white); }
+    .t-vbs-spec-list li::before { content: '▪'; position: absolute; left: 0; color: #7fb0ff; }
+    .t-vbs-spec-title { color: #7fb0ff; }
     .t-vbs-spec-banner { position: relative; overflow: hidden; }
     .t-vbs-spec-watermark { position: absolute; top: 50%; right: -36px; transform: translateY(-50%); width: 280px; height: 280px; opacity: 0.10; pointer-events: none; user-select: none; }
     .t-vbs-spec-banner > .t-vbs-h3, .t-vbs-spec-list { position: relative; z-index: 1; }
@@ -335,7 +350,7 @@
 
     <div class="t-vbs-spec-banner">
       <img src="logo.png" alt="" class="t-vbs-spec-watermark" aria-hidden="true" loading="lazy">
-      <h3 class="t-vbs-h3" style="color:var(--t-accent);">5 ключевых гарантий именно для Войск беспилотных систем (пп. 37–41):</h3>
+      <h3 class="t-vbs-h3 t-vbs-spec-title">5 ключевых гарантий именно для Войск беспилотных систем (пп. 37–41):</h3>
       <ul class="t-vbs-spec-list">
         <li><strong>Бесплатные курсы до контракта:</strong> обучение на оператора БПЛА при образовательных организациях еще до службы.</li>
         <li><strong>Профессиональная учебная сеть:</strong> углубленная подготовка в учебных центрах Минобороны РФ.</li>
@@ -353,7 +368,7 @@
   <style>
     .t-vbs-pay-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 40px; background: var(--t-card); border: 1px solid var(--t-border); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 8px 24px rgba(15,27,46,0.06); }
     .t-vbs-pay-table td { padding: 16px 22px; border-bottom: 1px solid var(--t-border); font-size: 16px; }
-    .t-vbs-pay-table td:last-child { text-align: right; font-family: 'Oswald', sans-serif; font-size: 21px; font-weight: 700; color: var(--t-accent); white-space: nowrap; }
+    .t-vbs-pay-table td:last-child { text-align: right; font-family: 'Oswald', sans-serif; font-size: 21px; font-weight: 700; color: var(--t-red); white-space: nowrap; }
     .t-vbs-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
     .t-vbs-tab { padding: 12px 18px; background: var(--t-card); border: 1px solid var(--t-border); border-radius: 12px; color: var(--t-muted); font-family: 'Oswald', sans-serif; font-size: 15px; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 4px 10px rgba(15,27,46,0.05); transition: 0.18s ease; }
     .t-vbs-tab.active, .t-vbs-tab:hover { background: var(--t-accent); border-color: var(--t-accent); color: var(--t-white); }
@@ -491,7 +506,7 @@
 </section>
 
 <!-- БЛОК 7: КОНТАКТЫ, ФОРМА ЗАЯВКИ И СКРИПТЫ -->
-<footer class="t-vbs-root t-vbs-sec" id="vbs-form" style="border-bottom:none;background:linear-gradient(180deg, rgba(246,249,253,0.95) 0%, rgba(246,249,253,0.985) 100%), url('https://optim.tildacdn.com/tila3066-3534-4139-b261-383433333965/-/format/webp/21.jpeg.webp') center / cover no-repeat;">
+<footer class="t-vbs-root t-vbs-sec" id="vbs-form" style="border-bottom:none;background:linear-gradient(180deg, rgba(11,18,32,0.96) 0%, rgba(11,18,32,0.99) 100%), url('https://optim.tildacdn.com/tila3066-3534-4139-b261-383433333965/-/format/webp/21.jpeg.webp') center / cover no-repeat;">
   <style>
     .t-vbs-contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px; align-items: start; }
     .t-vbs-contact-item { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--t-border); }
@@ -522,6 +537,15 @@
     .t-vbs-contact-head .t-vbs-h2 { margin-bottom: 0; }
     .t-vbs-legal-copy { display: flex; align-items: center; gap: 10px; }
     .t-vbs-legal-logo { width: 28px; height: 28px; flex: 0 0 auto; opacity: 0.9; }
+    /* Футер тёмный: белые карточки на чёрном фоне дают контраст */
+    #vbs-form { color: var(--t-on-ink); }
+    #vbs-form .t-vbs-h2, #vbs-form .t-vbs-h3 { color: var(--t-white); }
+    #vbs-form .t-vbs-lead { color: rgba(233,239,249,0.72); }
+    #vbs-form .t-vbs-contact-grid .t-vbs-hud-box { color: var(--t-text); }
+    #vbs-form .t-vbs-contact-grid .t-vbs-hud-box .t-vbs-h3 { color: var(--t-text); }
+    #vbs-form .t-vbs-contact-grid .t-vbs-kicker { color: var(--t-white); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+    #vbs-form .t-vbs-legal { color: rgba(233,239,249,0.55); border-top-color: rgba(255,255,255,0.14); }
+    #vbs-form .t-vbs-legal a { color: #7fb0ff; }
     @media (max-width: 860px) { .t-vbs-contact-grid { grid-template-columns: 1fr; } }
     @media (max-width: 640px) {
       .t-vbs-contact-head { flex-direction: column; align-items: flex-start; gap: 14px; }
