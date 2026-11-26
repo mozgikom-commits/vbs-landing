@@ -1,0 +1,19 @@
+{
+  "name": "Войска беспилотных систем — Приморский край",
+  "short_name": "ВБС",
+  "description": "Служба по контракту в Войсках беспилотных систем, Октябрьский район Приморского края",
+  "lang": "ru",
+  "dir": "ltr",
+  "start_url": "/vbs-landing/",
+  "scope": "/vbs-landing/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121411",
+  "theme_color": "#121411",
+  "icons": [
+    { "src": "/vbs-landing/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/vbs-landing/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/vbs-landing/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/vbs-landing/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
