@@ -85,15 +85,28 @@
     .t-vbs-hero {
       padding: 96px 0 76px;
       background:
-        linear-gradient(90deg, rgba(18,20,17,0.96) 0%, rgba(18,20,17,0.82) 55%, rgba(18,20,17,0.55) 100%),
-        url('https://optim.tildacdn.com/tila3631-3838-4739-a662-326662363032/-/format/webp/11.jpeg.webp') center right / cover no-repeat;
+        linear-gradient(90deg, rgba(18,20,17,0.97) 0%, rgba(18,20,17,0.92) 44%, rgba(18,20,17,0.30) 100%),
+        url('https://optim.tildacdn.com/tila3631-3838-4739-a662-326662363032/-/format/webp/11.jpeg.webp') right center / auto 100% no-repeat,
+        var(--t-bg);
       border-bottom: 2px solid var(--t-accent);
     }
+    /* Исходник фото всего 602x451 — на мобильных показываем его картинкой в натуральном масштабе,
+       а не растянутым фоном на весь экран */
+    .t-vbs-hero-photo { display: none; }
     .t-vbs-kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
     .t-vbs-kpi-num { font-family: 'Oswald', sans-serif; font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--t-accent); line-height: 1; margin-bottom: 8px; }
     .t-vbs-kpi-label { font-size: 14px; color: var(--t-muted); }
     @media (max-width: 860px) {
-      .t-vbs-hero { padding: 60px 0 48px; }
+      .t-vbs-hero {
+        padding: 0 0 44px;
+        background: var(--t-bg);
+      }
+      .t-vbs-hero-photo { display: block; position: relative; margin: 0 0 26px; overflow: hidden; }
+      .t-vbs-hero-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 32%; }
+      .t-vbs-hero-photo::after {
+        content: ''; position: absolute; inset: 0; pointer-events: none;
+        background: linear-gradient(180deg, rgba(18,20,17,0.10) 0%, rgba(18,20,17,0) 30%, rgba(18,20,17,0.80) 84%, var(--t-bg) 100%);
+      }
       .t-vbs-kpi-grid { grid-template-columns: 1fr; }
     }
 
@@ -115,6 +128,9 @@
   </style>
 
   <div class="t-vbs-hero">
+    <div class="t-vbs-hero-photo">
+      <img src="https://optim.tildacdn.com/tila3631-3838-4739-a662-326662363032/-/format/webp/11.jpeg.webp" alt="Оператор беспилотных систем на боевой позиции" width="602" height="451">
+    </div>
     <div class="t-vbs-wrap">
       <div class="t-vbs-headerbar">
         <div class="t-vbs-brand">
@@ -285,6 +301,7 @@
 
 <!-- БЛОК 5: ВЫПЛАТЫ И СОЦИАЛЬНЫЕ ГАРАНТИИ -->
 <section class="t-vbs-root t-vbs-sec" id="vbs-guarantees">
+  <img src="logo.png" alt="" class="t-vbs-guar-wm" aria-hidden="true" loading="lazy">
   <style>
     .t-vbs-pay-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; background: var(--t-card); border: 1px solid var(--t-border); }
     .t-vbs-pay-table td { padding: 16px 22px; border-bottom: 1px solid var(--t-border); font-size: 16px; }
@@ -297,7 +314,11 @@
     .t-vbs-g-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; margin: 0; padding: 0; list-style: none; }
     .t-vbs-g-list li { position: relative; padding-left: 22px; font-size: 14px; }
     .t-vbs-g-list li::before { content: '✓'; position: absolute; left: 0; color: var(--t-accent); font-weight: 700; }
+    #vbs-guarantees { position: relative; overflow: hidden; }
+    #vbs-guarantees .t-vbs-wrap { position: relative; z-index: 1; }
+    .t-vbs-guar-wm { position: absolute; right: -50px; bottom: 30px; width: 320px; height: 320px; opacity: 0.04; pointer-events: none; user-select: none; }
     @media (max-width: 768px) {
+      .t-vbs-guar-wm { width: 200px; height: 200px; right: -60px; bottom: 20px; }
       .t-vbs-g-list { grid-template-columns: 1fr; }
       .t-vbs-pay-table td { display: block; text-align: left !important; padding: 10px 16px; }
       .t-vbs-pay-table td:first-child { padding-bottom: 2px; border-bottom: none; font-size: 14px; color: var(--t-muted); }
@@ -367,11 +388,25 @@
     .t-vbs-faq-box.open .t-vbs-faq-icon { transform: rotate(45deg); }
     .t-vbs-faq-ans { display: none; padding: 14px 22px 18px; color: var(--t-muted); font-size: 15px; border-top: 1px solid var(--t-border); }
     .t-vbs-faq-box.open .t-vbs-faq-ans { display: block; }
+    .t-vbs-sec-head { display: flex; align-items: center; gap: 18px; }
+    .t-vbs-sec-head > div { min-width: 0; }
+    .t-vbs-sec-badge { width: 56px; height: 56px; flex: 0 0 auto; filter: drop-shadow(0 0 12px rgba(232,111,28,0.22)); }
+    .t-vbs-sec-head .t-vbs-kicker { margin-bottom: 10px; }
+    .t-vbs-sec-head .t-vbs-h2 { margin-bottom: 0; }
+    @media (max-width: 640px) {
+      .t-vbs-sec-head { gap: 12px; align-items: flex-start; }
+      .t-vbs-sec-badge { width: 44px; height: 44px; }
+    }
   </style>
 
   <div class="t-vbs-wrap">
-    <span class="t-vbs-kicker">Ответы на главные вопросы</span>
-    <h2 class="t-vbs-h2">Часто задаваемые вопросы кандидатов</h2>
+    <div class="t-vbs-sec-head">
+      <img src="logo.png" alt="" class="t-vbs-sec-badge" aria-hidden="true" loading="lazy">
+      <div>
+        <span class="t-vbs-kicker">Ответы на главные вопросы</span>
+        <h2 class="t-vbs-h2">Часто задаваемые вопросы кандидатов</h2>
+      </div>
+    </div>
 
     <div style="margin-top:28px;">
       <div class="t-vbs-faq-box" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
