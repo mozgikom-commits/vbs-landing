@@ -497,6 +497,28 @@
       return out;
     }
 
+    /* ==== ПЕРЕХОД К ФОРМЕ: якорь #vbs-form стоит в начале футера,
+       на мобильных форма оказывается на экран ниже — скроллим прямо к ней ==== */
+    (function() {
+      var links = document.querySelectorAll('a[href="#vbs-form"]');
+      var target = document.getElementById('tVbsLeadForm');
+      if (!links.length || !target) return;
+      var jump = function() {
+        if (target.scrollIntoView) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          window.scrollTo(0, target.getBoundingClientRect().top + window.pageYOffset - 24);
+        }
+      };
+      var onClick = function(e) {
+        e.preventDefault();
+        jump();
+        if (history.replaceState) history.replaceState(null, '', '#vbs-form');
+      };
+      for (var i = 0; i < links.length; i++) links[i].addEventListener('click', onClick);
+      if (location.hash === '#vbs-form') setTimeout(jump, 350);
+    })();
+
     (function() {
       var phoneInput = document.querySelector('#tVbsLeadForm [name="phone"]');
       if (!phoneInput) return;
