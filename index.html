@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Служба по контракту в Войсках беспилотных систем — Приморский край</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 
 <!-- БЛОК 1: ГЛОБАЛЬНЫЕ СТИЛИ И SEO -->
 <script type="application/ld+json">
@@ -75,10 +77,36 @@
       .t-vbs-hero { padding: 60px 0 48px; }
       .t-vbs-kpi-grid { grid-template-columns: 1fr; }
     }
+
+    /* Шапка hero с эмблемой */
+    .t-vbs-headerbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid rgba(46,52,42,0.9); }
+    .t-vbs-brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .t-vbs-brand-logo { width: 68px; height: 68px; flex: 0 0 auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(232,111,28,0.18)); }
+    .t-vbs-brand-name { display: block; font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 1.4px; text-transform: uppercase; color: var(--t-text); line-height: 1.2; }
+    .t-vbs-brand-sub { display: block; font-size: 12.5px; color: var(--t-muted); margin-top: 4px; }
+    .t-vbs-header-cta { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; padding: 10px 22px; background: var(--t-accent); border: 1px solid var(--t-accent); color: var(--t-white); font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: 0.2s; }
+    .t-vbs-header-cta:hover { background: transparent; color: var(--t-accent); }
+    @media (max-width: 640px) {
+      .t-vbs-headerbar { flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 28px; padding-bottom: 18px; }
+      .t-vbs-brand-logo { width: 54px; height: 54px; }
+      .t-vbs-brand-name { font-size: 13px; letter-spacing: 1px; }
+      .t-vbs-brand-sub { font-size: 11.5px; }
+      .t-vbs-header-cta { width: 100%; }
+    }
   </style>
 
   <div class="t-vbs-hero">
     <div class="t-vbs-wrap">
+      <div class="t-vbs-headerbar">
+        <div class="t-vbs-brand">
+          <img src="logo.png" alt="Эмблема Войск беспилотной авиации" class="t-vbs-brand-logo" width="68" height="68">
+          <div class="t-vbs-brand-text">
+            <span class="t-vbs-brand-name">Войска беспилотных систем</span>
+            <span class="t-vbs-brand-sub">Октябрьский район • Приморский край</span>
+          </div>
+        </div>
+        <a href="#vbs-form" class="t-vbs-header-cta">Подать заявку</a>
+      </div>
       <span class="t-vbs-kicker">Минобороны РФ • Октябрьский район, Приморский край</span>
       <h1 class="t-vbs-h1">Служба по контракту в <span style="color:var(--t-accent);">Войсках беспилотных систем</span></h1>
       <p class="t-vbs-lead">Освойте высокотехнологичную профессию оператора или инженера БПЛА за счет государства. Специальный контракт от 1 года с гарантией службы исключительно в подразделениях беспилотной авиации.</p>
@@ -195,8 +223,11 @@
     .t-vbs-spec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; margin: 18px 0 0 0; padding: 0; list-style: none; }
     .t-vbs-spec-list li { position: relative; padding-left: 22px; font-size: 14px; }
     .t-vbs-spec-list li::before { content: '▪'; position: absolute; left: 0; color: var(--t-accent); }
+    .t-vbs-spec-banner { position: relative; overflow: hidden; }
+    .t-vbs-spec-watermark { position: absolute; top: 50%; right: -36px; transform: translateY(-50%); width: 280px; height: 280px; opacity: 0.08; pointer-events: none; user-select: none; }
+    .t-vbs-spec-banner > .t-vbs-h3, .t-vbs-spec-list { position: relative; z-index: 1; }
     @media (max-width: 960px) { .t-vbs-training-split { grid-template-columns: 1fr; } .t-vbs-steps-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .t-vbs-steps-grid, .t-vbs-spec-list { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .t-vbs-steps-grid, .t-vbs-spec-list { grid-template-columns: 1fr; } .t-vbs-spec-watermark { width: 190px; height: 190px; right: -52px; } }
   </style>
 
   <div class="t-vbs-wrap">
@@ -220,6 +251,7 @@
     </div>
 
     <div class="t-vbs-spec-banner">
+      <img src="logo.png" alt="" class="t-vbs-spec-watermark" aria-hidden="true" loading="lazy">
       <h3 class="t-vbs-h3" style="color:var(--t-accent);">5 ключевых гарантий именно для Войск беспилотных систем (пп. 37–41):</h3>
       <ul class="t-vbs-spec-list">
         <li><strong>Бесплатные курсы до контракта:</strong> обучение на оператора БПЛА при образовательных организациях еще до службы.</li>
@@ -369,14 +401,30 @@
     .t-vbs-field:focus { outline: none; border-color: var(--t-accent); }
     .t-vbs-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--t-muted); margin-bottom: 18px; cursor: pointer; }
     .t-vbs-legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--t-border); font-size: 12px; color: var(--t-muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .t-vbs-contact-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+    .t-vbs-contact-logo { width: 76px; height: 76px; flex: 0 0 auto; filter: drop-shadow(0 0 14px rgba(232, 111, 28, 0.25)); }
+    .t-vbs-contact-head .t-vbs-kicker { margin-bottom: 10px; }
+    .t-vbs-contact-head .t-vbs-h2 { margin-bottom: 0; }
+    .t-vbs-legal-copy { display: flex; align-items: center; gap: 10px; }
+    .t-vbs-legal-logo { width: 28px; height: 28px; flex: 0 0 auto; opacity: 0.9; }
     @media (max-width: 860px) { .t-vbs-contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .t-vbs-contact-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .t-vbs-contact-logo { width: 64px; height: 64px; }
+      .t-vbs-contact-head .t-vbs-h2 { font-size: 24px; }
+    }
   </style>
 
   <div class="t-vbs-wrap">
     <div class="t-vbs-contact-grid">
       <address style="font-style:normal;">
-        <span class="t-vbs-kicker">Пункт отбора и консультаций</span>
-        <h2 class="t-vbs-h2">Присоединяйся к нам и служи на благо Родины!</h2>
+        <div class="t-vbs-contact-head">
+          <img src="logo.png" alt="Эмблема Войск беспилотной авиации" class="t-vbs-contact-logo" width="76" height="76">
+          <div>
+            <span class="t-vbs-kicker">Пункт отбора и консультаций</span>
+            <h2 class="t-vbs-h2">Присоединяйся к нам и служи на благо Родины!</h2>
+          </div>
+        </div>
         <p class="t-vbs-lead" style="margin-bottom:28px;">Официальные представители Министерства обороны Российской Федерации по Октябрьскому району Приморского края.</p>
         <div class="t-vbs-hud-box" style="background:rgba(29,33,27,0.92);">
           <div class="t-vbs-contact-item"><div class="t-vbs-contact-lbl">Территория набора</div><div class="t-vbs-contact-val">Приморский край, Октябрьский муниципальный округ (с. Покровка)</div></div>
@@ -408,7 +456,7 @@
     </div>
 
     <div class="t-vbs-legal">
-      <span>© 2026 Набор на военную службу по контракту в Войска беспилотных систем. Октябрьский район, Приморский край.</span>
+      <span class="t-vbs-legal-copy"><img src="logo.png" alt="" class="t-vbs-legal-logo" aria-hidden="true" loading="lazy"><span>© 2026 Набор на военную службу по контракту в Войска беспилотных систем. Октябрьский район, Приморский край.</span></span>
       <span>Информация носит справочный характер. Точный расчет выплат производится в пункте отбора.</span>
     </div>
   </div>
