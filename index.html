@@ -54,7 +54,20 @@
   .t-vbs-root { font-family: 'Inter', sans-serif; background: var(--t-bg); color: var(--t-text); line-height: 1.55; overflow-x: hidden; }
   .t-vbs-root *, .t-vbs-root *::before, .t-vbs-root *::after { box-sizing: border-box; }
   .t-vbs-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-  .t-vbs-sec { padding: 72px 0; border-bottom: 1px solid #dbe3ee; }
+  .t-vbs-sec { padding: 72px 0; position: relative; }
+  /* Рваный край между блоками — будто порвало взрывом */
+  .t-vbs-hero { position: relative; }
+  .t-vbs-tear-a::after, .t-vbs-tear-b::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 58px;
+    pointer-events: none; z-index: 2;
+    filter: drop-shadow(0 -3px 6px rgba(11,18,32,0.18));
+  }
+  .t-vbs-tear-a::after { clip-path: polygon(0% 100%, 0.00% 3.32%, 3.33% 9.63%, 6.67% 85.01%, 10.00% 10.49%, 13.33% 71.12%, 16.67% 84.01%, 20.00% 45.07%, 23.33% 49.56%, 26.67% 77.95%, 30.00% 58.79%, 33.33% 38.96%, 36.67% 82.16%, 40.00% 74.32%, 43.33% 71.28%, 46.67% 41.51%, 50.00% 10.09%, 53.33% 74.07%, 56.67% 78.74%, 60.00% 75.99%, 63.33% 72.48%, 66.67% 65.09%, 70.00% 2.26%, 73.33% 9.18%, 76.67% 97.85%, 80.00% 7.80%, 83.33% 5.90%, 86.67% 95.40%, 90.00% 5.40%, 93.33% 4.92%, 96.67% 9.48%, 100.00% 45.79%, 100% 100%); }
+  .t-vbs-tear-b::after { clip-path: polygon(0% 100%, 0.00% 11.86%, 3.33% 89.29%, 6.67% 30.35%, 10.00% 69.91%, 13.33% 59.90%, 16.67% 55.38%, 20.00% 97.54%, 23.33% 46.79%, 26.67% 98.59%, 30.00% 50.85%, 33.33% 84.95%, 36.67% 52.99%, 40.00% 9.48%, 43.33% 84.55%, 46.67% 3.94%, 50.00% 89.74%, 53.33% 92.93%, 56.67% 42.67%, 60.00% 65.42%, 63.33% 86.85%, 66.67% 9.12%, 70.00% 32.26%, 73.33% 10.13%, 76.67% 80.95%, 80.00% 83.52%, 83.33% 4.23%, 86.67% 47.15%, 90.00% 34.12%, 93.33% 96.45%, 96.67% 52.50%, 100.00% 83.21%, 100% 100%); }
+  .t-vbs-tear-to-white::after { background: #ffffff; }
+  .t-vbs-tear-to-alt::after { background: var(--t-bg-alt); }
+  .t-vbs-tear-to-ink::after { background: var(--t-ink); }
+  @media (max-width: 640px) { .t-vbs-tear-a::after, .t-vbs-tear-b::after { height: 34px; } }
   .t-vbs-sec-alt { background: var(--t-bg-alt); }
 
   .t-vbs-hud-box {
@@ -146,7 +159,7 @@
         linear-gradient(90deg, rgba(8,15,30,0.94) 0%, rgba(8,15,30,0.76) 46%, rgba(8,15,30,0.20) 100%),
         url('hero.webp') right center / cover no-repeat,
         var(--t-bg);
-      border-bottom: 2px solid var(--t-accent);
+
     }
     /* Исходник фото всего 602x451 — на мобильных показываем его картинкой в натуральном масштабе,
        а не растянутым фоном на весь экран */
@@ -185,7 +198,7 @@
     }
   </style>
 
-  <div class="t-vbs-hero">
+  <div class="t-vbs-hero t-vbs-tear-a t-vbs-tear-to-white">
     <div class="t-vbs-hero-photo">
       <img src="hero.webp" alt="Оператор беспилотных систем готовит FPV-дрон к вылету" width="1169" height="730">
     </div>
@@ -226,7 +239,7 @@
 </header>
 
 <!-- БЛОК 3: СПЕЦИАЛЬНОСТИ И ТЕХНИКА -->
-<section class="t-vbs-root t-vbs-sec" id="vbs-roles">
+<section class="t-vbs-root t-vbs-sec t-vbs-tear-a t-vbs-tear-to-alt" id="vbs-roles">
   <style>
     .t-vbs-roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .t-vbs-role-card { padding: 0; display: flex; flex-direction: column; }
@@ -298,7 +311,7 @@
 </section>
 
 <!-- БЛОК 4: ОБУЧЕНИЕ И ОСОБЫЕ ГАРАНТИИ ВБС -->
-<section class="t-vbs-root t-vbs-sec t-vbs-sec-alt" id="vbs-special">
+<section class="t-vbs-root t-vbs-sec t-vbs-sec-alt t-vbs-tear-b t-vbs-tear-to-white" id="vbs-special">
   <style>
     .t-vbs-training-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: center; margin-bottom: 40px; }
     .t-vbs-training-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -363,7 +376,7 @@
 </section>
 
 <!-- БЛОК 5: ВЫПЛАТЫ И СОЦИАЛЬНЫЕ ГАРАНТИИ -->
-<section class="t-vbs-root t-vbs-sec" id="vbs-guarantees">
+<section class="t-vbs-root t-vbs-sec t-vbs-tear-b t-vbs-tear-to-alt" id="vbs-guarantees">
   <img src="logo.png" alt="" class="t-vbs-guar-wm" aria-hidden="true" loading="lazy">
   <style>
     .t-vbs-pay-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 40px; background: var(--t-card); border: 1px solid var(--t-border); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 8px 24px rgba(15,27,46,0.06); }
@@ -443,7 +456,7 @@
 </section>
 
 <!-- БЛОК 6: ЧАСТЫЕ ВОПРОСЫ (FAQ) -->
-<section class="t-vbs-root t-vbs-sec t-vbs-sec-alt" id="vbs-faq" itemscope itemtype="https://schema.org/FAQPage">
+<section class="t-vbs-root t-vbs-sec t-vbs-sec-alt t-vbs-tear-a t-vbs-tear-to-ink" id="vbs-faq" itemscope itemtype="https://schema.org/FAQPage">
   <style>
     .t-vbs-faq-box { border: 1px solid var(--t-border); background: var(--t-card); margin-bottom: 12px; border-radius: 14px; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 6px 16px rgba(15,27,46,0.06); overflow: hidden; }
     .t-vbs-faq-btn { width: 100%; padding: 18px 22px; background: none; border: none; color: var(--t-text); font-family: 'Oswald', sans-serif; font-size: 18px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
