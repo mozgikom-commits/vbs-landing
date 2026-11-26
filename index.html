@@ -400,6 +400,7 @@
     .t-vbs-field { width: 100%; height: 50px; padding: 0 16px; background: var(--t-bg); border: 1px solid var(--t-border); color: var(--t-text); font-family: inherit; font-size: 15px; margin-bottom: 14px; }
     .t-vbs-field:focus { outline: none; border-color: var(--t-accent); }
     .t-vbs-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--t-muted); margin-bottom: 18px; cursor: pointer; }
+    .t-vbs-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .t-vbs-legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--t-border); font-size: 12px; color: var(--t-muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
     .t-vbs-contact-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
     .t-vbs-contact-logo { width: 76px; height: 76px; flex: 0 0 auto; filter: drop-shadow(0 0 14px rgba(232, 111, 28, 0.25)); }
@@ -448,6 +449,10 @@
             <option value="Инженер / техник / связь / РЭБ">Инженер / техник / связь / РЭБ</option>
           </select>
           <label class="t-vbs-check"><input type="checkbox" required checked><span>Согласен на обработку персональных данных для получения консультации.</span></label>
+          <div class="t-vbs-hp" aria-hidden="true">
+            <label for="tVbsWebsite">Не заполняйте это поле</label>
+            <input type="text" id="tVbsWebsite" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="t-vbs-btn-primary" style="width:100%;">Подать заявку на службу</button>
           <div id="tVbsSuccessMsg" style="display:none;margin-top:14px;padding:12px;background:rgba(109,124,89,0.25);border:1px solid var(--t-olive);color:var(--t-white);font-size:14px;text-align:center;">Заявка успешно отправлена! Представитель свяжется с вами в ближайшее время.</div>
           <div id="tVbsErrorMsg" style="display:none;margin-top:14px;padding:12px;background:rgba(232,111,28,0.15);border:1px solid var(--t-accent);color:var(--t-white);font-size:14px;text-align:center;"></div>
@@ -469,9 +474,10 @@
       document.getElementById(panelId).classList.add('active');
       evt.currentTarget.classList.add('active');
     }
-    /* ==== ОТПРАВКА ЗАЯВОК В TELEGRAM ==== */
-    var TG_BOT_TOKEN = '9250723923:AAHko3cL3R5an0Q7VNaqKuMqaBacrw5_2-M'; /* токен бота @bplavl_bot */
-    var TG_CHAT_ID   = '-1005620440966'; /* группа «Заявки САЙТ» — Артём + коллега */
+    /* ==== ОТПРАВКА ЗАЯВОК ЧЕРЕЗ ПРОКСИ (Cloudflare Worker) ==== */
+    /* Токен бота живёт в секретах воркера — в этой странице его нет и не должно быть. */
+    var LEAD_ENDPOINT = 'https://vbs-lead-proxy.mozgikom.workers.dev';
+    var tVbsLoadedAt  = Date.now();
 
     /* ==== МАСКА ТЕЛЕФОНА: строго 11 цифр, формат +7 (___) ___-__-__ ==== */
     function tVbsMaskPhone(value) {
@@ -531,7 +537,9 @@
         return;
       }
 
-      if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      var hpField = form.querySelector('[name="website"]');
+
+      if (!LEAD_ENDPOINT) {
         errMsg.textContent = 'Отправка временно недоступна. Попробуйте позже.';
         errMsg.style.display = 'block';
         return;
@@ -541,28 +549,41 @@
       var btnLabel = btn.textContent;
       btn.textContent = 'Отправка…';
 
-      var text = [
-        '🔔 Новая заявка — ВБС, Приморский край',
-        '👤 Имя: ' + name,
-        '📞 Телефон: ' + phone,
-        '🎂 Возраст: ' + age,
-        '🎯 Направление: ' + role,
-        '🕒 ' + new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Vladivostok' }) + ' (Владивосток)'
-      ].join('\n');
-
-      fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+      fetch(LEAD_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, disable_web_page_preview: true })
+        body: JSON.stringify({
+          name: name,
+          phone: phoneDigits,
+          age: age,
+          role: role,
+          website: hpField ? hpField.value : '',
+          ts: tVbsLoadedAt
+        })
       })
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          return r.json().then(function(body) { return { status: r.status, body: body }; });
+        })
         .then(function(res) {
-          if (!res || !res.ok) throw new Error(res && res.description ? res.description : 'Telegram error');
+          var code = res && res.body && res.body.error;
+          if (!res || !res.body || !res.body.ok) {
+            if (code === 'too_many_requests') throw new Error('Слишком часто. Подождите минуту и отправьте снова.');
+            if (code === 'stale_form') throw new Error('Страница устарела. Обновите её и отправьте заново.');
+            if (code === 'bad_phone') throw new Error('Проверьте номер телефона.');
+            throw new Error('__generic__');
+          }
           okMsg.style.display = 'block';
           form.reset();
         })
-        .catch(function() {
-          errMsg.textContent = 'Не удалось отправить заявку. Проверьте связь и попробуйте ещё раз.';
+        .catch(function(err) {
+          var known = ['Слишком часто', 'Страница устарела', 'Проверьте номер'];
+          var msg = 'Не удалось отправить заявку. Проверьте связь и попробуйте ещё раз.';
+          if (err && err.message) {
+            for (var i = 0; i < known.length; i++) {
+              if (err.message.indexOf(known[i]) === 0) msg = err.message;
+            }
+          }
+          errMsg.textContent = msg;
           errMsg.style.display = 'block';
         })
         .then(function() {
