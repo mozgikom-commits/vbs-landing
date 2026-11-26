@@ -10,19 +10,25 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/vbs-landing/favicon-96x96.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/vbs-landing/apple-touch-icon.png">
 <link rel="manifest" href="/vbs-landing/site.webmanifest">
-<meta name="theme-color" content="#121411">
+<meta name="theme-color" content="#f5f7fb">
 <meta name="description" content="Запрошенная страница не найдена. Вернитесь на главную страницу набора на службу по контракту в Войска беспилотных систем.">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;500;700&display=swap');
 
   :root {
-    --t-bg: #121411; --t-bg-alt: #181b16; --t-card: #1d211b; --t-card-hover: #242921;
-    --t-border: #2e342a; --t-accent: #e86f1c; --t-olive: #6d7c59;
-    --t-text: #f2f4f0; --t-muted: #9ca396; --t-white: #ffffff;
+    --t-bg: #f5f7fb; --t-bg-alt: #e9eff8; --t-card: #ffffff; --t-card-hover: #f7fafd;
+    --t-border: #d2dbe8; --t-accent: #0039a6; --t-olive: #1f6fb2; --t-red: #d52b1e;
+    --t-text: #0f1b2e; --t-muted: #566680; --t-white: #ffffff;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
+
+  .t-vbs-flag {
+    position: fixed; top: 0; left: 0; right: 0; height: 6px; z-index: 5;
+    background: linear-gradient(90deg, #ffffff 0 33.34%, #0039a6 33.34% 66.67%, #d52b1e 66.67% 100%);
+    box-shadow: 0 1px 4px rgba(15,27,46,0.16);
+  }
 
   body {
     margin: 0;
@@ -33,7 +39,7 @@
     padding: 32px 20px;
     font-family: 'Inter', sans-serif;
     background:
-      linear-gradient(180deg, rgba(18,20,17,0.94) 0%, rgba(18,20,17,0.99) 100%),
+      linear-gradient(180deg, rgba(245,247,251,0.93) 0%, rgba(245,247,251,0.985) 100%),
       url('https://optim.tildacdn.com/tila6661-6131-4634-b535-393038376639/-/format/webp/18.jpeg.webp') center / cover no-repeat,
       var(--t-bg);
     color: var(--t-text);
@@ -44,6 +50,7 @@
 
   .t-vbs-hud-box {
     background: var(--t-card);
+    box-shadow: 0 8px 28px rgba(15,27,46,0.10);
     border: 1px solid var(--t-border);
     position: relative;
     padding: 44px 36px;
@@ -59,7 +66,7 @@
   .t-vbs-kicker {
     display: inline-block; font-family: 'Oswald', sans-serif; font-size: 13px;
     letter-spacing: 1.5px; text-transform: uppercase; color: var(--t-accent);
-    background: rgba(232,111,28,0.12); border: 1px solid rgba(232,111,28,0.35);
+    background: rgba(0,57,166,0.08); border: 1px solid rgba(0,57,166,0.28);
     padding: 6px 14px; margin-bottom: 22px;
   }
 
@@ -81,12 +88,12 @@
 
   .t-vbs-btn-primary {
     display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
-    padding: 14px 30px; background: var(--t-white); color: #111310;
+    padding: 14px 30px; background: var(--t-accent); color: var(--t-white);
     font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700;
     letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none;
     border: none; cursor: pointer; transition: 0.2s;
   }
-  .t-vbs-btn-primary:hover { background: var(--t-accent); color: var(--t-white); }
+  .t-vbs-btn-primary:hover { background: var(--t-red); color: var(--t-white); }
 
   .t-vbs-btn-outline {
     display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
@@ -112,6 +119,8 @@
 </style>
 </head>
 <body>
+
+<div class="t-vbs-flag" aria-hidden="true"></div>
 
 <main class="t-vbs-wrap">
   <div class="t-vbs-hud-box">
