@@ -56,11 +56,20 @@
   .t-vbs-sec { padding: 72px 0; border-bottom: 1px solid var(--t-border); }
   .t-vbs-sec-alt { background: var(--t-bg-alt); }
 
-  .t-vbs-hud-box { background: var(--t-card); border: 1px solid var(--t-border); position: relative; padding: 26px; transition: 0.2s; box-shadow: 0 2px 12px rgba(15,27,46,0.06); }
-  .t-vbs-hud-box::before, .t-vbs-hud-box::after { content: ''; position: absolute; width: 12px; height: 12px; border-color: var(--t-accent); border-style: solid; pointer-events: none; }
-  .t-vbs-hud-box::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-  .t-vbs-hud-box::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-  .t-vbs-hud-box:hover { border-color: var(--t-olive); background: var(--t-card-hover); }
+  .t-vbs-hud-box {
+    background: var(--t-card); border: 1px solid var(--t-border); position: relative; padding: 26px;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 6px 16px rgba(15,27,46,0.07), 0 20px 44px rgba(15,27,46,0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .t-vbs-hud-box::before, .t-vbs-hud-box::after { border-radius: 4px; }
+  .t-vbs-hud-box::before, .t-vbs-hud-box::after { content: ''; position: absolute; width: 15px; height: 15px; border-color: var(--t-accent); border-style: solid; pointer-events: none; }
+  .t-vbs-hud-box::before { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+  .t-vbs-hud-box::after { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+  .t-vbs-hud-box:hover {
+    border-color: var(--t-olive); background: var(--t-card-hover); transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(15,27,46,0.07), 0 12px 28px rgba(15,27,46,0.10), 0 26px 52px rgba(15,27,46,0.07);
+  }
 
   .t-vbs-kicker { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--t-accent); background: rgba(0,57,166,0.08); border: 1px solid rgba(0,57,166,0.28); padding: 6px 14px; margin-bottom: 16px; }
   .t-vbs-h1, .t-vbs-h2, .t-vbs-h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; margin: 0; line-height: 1.12; }
@@ -70,10 +79,35 @@
   .t-vbs-lead { font-size: clamp(16px, 2vw, 18px); color: var(--t-muted); max-width: 740px; margin: 0 0 32px 0; }
 
   .t-vbs-btn-group { display: flex; flex-wrap: wrap; gap: 14px; }
-  .t-vbs-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 30px; background: var(--t-accent); color: var(--t-white); font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: 0.2s; }
-  .t-vbs-btn-primary:hover { background: var(--t-red); color: var(--t-white); }
-  .t-vbs-btn-outline { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 26px; background: transparent; color: var(--t-text); border: 1px solid var(--t-border); font-family: 'Oswald', sans-serif; font-size: 15px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; transition: 0.2s; }
-  .t-vbs-btn-outline:hover { border-color: var(--t-accent); color: var(--t-accent); }
+  .t-vbs-btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 30px;
+    background: linear-gradient(180deg, #0a49bd 0%, var(--t-accent) 100%); color: var(--t-white);
+    font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; text-decoration: none; border: none; border-radius: 14px; cursor: pointer;
+    box-shadow: 0 1px 1px rgba(15,27,46,0.10), 0 4px 10px rgba(0,57,166,0.24), 0 12px 28px rgba(0,57,166,0.18),
+                inset 0 1px 0 rgba(255,255,255,0.22);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+  }
+  .t-vbs-btn-primary:hover {
+    background: linear-gradient(180deg, #e6392a 0%, var(--t-red) 100%); color: var(--t-white);
+    box-shadow: 0 2px 2px rgba(15,27,46,0.12), 0 8px 18px rgba(213,43,30,0.28), 0 18px 36px rgba(213,43,30,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+  .t-vbs-btn-primary:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(15,27,46,0.16), 0 3px 8px rgba(0,57,166,0.22); }
+  .t-vbs-btn-outline {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 26px;
+    background: var(--t-card); color: var(--t-text); border: 1px solid var(--t-border); border-radius: 14px;
+    font-family: 'Oswald', sans-serif; font-size: 15px; letter-spacing: 0.8px; text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 1px 1px rgba(15,27,46,0.06), 0 4px 12px rgba(15,27,46,0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .t-vbs-btn-outline:hover {
+    border-color: var(--t-accent); color: var(--t-accent); transform: translateY(-2px);
+    box-shadow: 0 2px 3px rgba(15,27,46,0.08), 0 10px 22px rgba(0,57,166,0.14);
+  }
+  .t-vbs-btn-outline:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(15,27,46,0.08); }
 
   /* Акцентное слово в заголовке */
   .t-vbs-hl { color: var(--t-accent); }
@@ -128,8 +162,8 @@
     .t-vbs-brand-logo { width: 68px; height: 68px; flex: 0 0 auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(0,57,166,0.22)); }
     .t-vbs-brand-name { display: block; font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 1.4px; text-transform: uppercase; color: var(--t-text); line-height: 1.2; }
     .t-vbs-brand-sub { display: block; font-size: 12.5px; color: var(--t-muted); margin-top: 4px; }
-    .t-vbs-header-cta { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; padding: 10px 22px; background: var(--t-accent); border: 1px solid var(--t-accent); color: var(--t-white); font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: 0.2s; }
-    .t-vbs-header-cta:hover { background: transparent; color: var(--t-accent); }
+    .t-vbs-header-cta { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; padding: 10px 22px; background: linear-gradient(180deg, #0a49bd 0%, var(--t-accent) 100%); border: 1px solid var(--t-accent); border-radius: 12px; color: var(--t-white); font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; white-space: nowrap; box-shadow: 0 1px 1px rgba(15,27,46,0.10), 0 4px 10px rgba(0,57,166,0.22), 0 10px 22px rgba(0,57,166,0.15), inset 0 1px 0 rgba(255,255,255,0.22); transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease; }
+    .t-vbs-header-cta:hover { background: linear-gradient(180deg, #e6392a 0%, var(--t-red) 100%); border-color: var(--t-red); color: var(--t-white); transform: translateY(-2px); box-shadow: 0 2px 2px rgba(15,27,46,0.12), 0 8px 18px rgba(213,43,30,0.28), inset 0 1px 0 rgba(255,255,255,0.25); }
     @media (max-width: 640px) {
       .t-vbs-headerbar { flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 28px; padding-bottom: 18px; }
       .t-vbs-brand-logo { width: 54px; height: 54px; }
@@ -184,7 +218,7 @@
   <style>
     .t-vbs-roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .t-vbs-role-card { padding: 0; display: flex; flex-direction: column; }
-    .t-vbs-role-media { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--t-bg-alt); overflow: hidden; border-bottom: 1px solid var(--t-border); }
+    .t-vbs-role-media { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--t-bg-alt); overflow: hidden; border-bottom: 1px solid var(--t-border); border-radius: 16px 16px 0 0; }
     .t-vbs-role-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.3s; }
     .t-vbs-role-card:hover .t-vbs-role-media img { transform: scale(1.04); }
     .t-vbs-role-tag { position: absolute; bottom: 12px; left: 14px; font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--t-white); background: rgba(0,38,110,0.86); border-left: 3px solid var(--t-red); padding: 5px 10px; }
@@ -265,7 +299,9 @@
         url('https://optim.tildacdn.com/tila6661-6131-4634-b535-393038376639/-/format/webp/18.jpeg.webp') center / cover no-repeat;
       border: 1px solid var(--t-border);
       border-left: 4px solid var(--t-accent);
+      border-radius: 16px;
       padding: 28px;
+      box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 8px 24px rgba(15,27,46,0.07);
     }
     .t-vbs-spec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; margin: 18px 0 0 0; padding: 0; list-style: none; }
     .t-vbs-spec-list li { position: relative; padding-left: 22px; font-size: 14px; }
@@ -315,11 +351,11 @@
 <section class="t-vbs-root t-vbs-sec" id="vbs-guarantees">
   <img src="logo.png" alt="" class="t-vbs-guar-wm" aria-hidden="true" loading="lazy">
   <style>
-    .t-vbs-pay-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; background: var(--t-card); border: 1px solid var(--t-border); }
+    .t-vbs-pay-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 40px; background: var(--t-card); border: 1px solid var(--t-border); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 8px 24px rgba(15,27,46,0.06); }
     .t-vbs-pay-table td { padding: 16px 22px; border-bottom: 1px solid var(--t-border); font-size: 16px; }
     .t-vbs-pay-table td:last-child { text-align: right; font-family: 'Oswald', sans-serif; font-size: 21px; font-weight: 700; color: var(--t-accent); white-space: nowrap; }
     .t-vbs-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
-    .t-vbs-tab { padding: 12px 18px; background: var(--t-card); border: 1px solid var(--t-border); color: var(--t-muted); font-family: 'Oswald', sans-serif; font-size: 15px; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+    .t-vbs-tab { padding: 12px 18px; background: var(--t-card); border: 1px solid var(--t-border); border-radius: 12px; color: var(--t-muted); font-family: 'Oswald', sans-serif; font-size: 15px; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 4px 10px rgba(15,27,46,0.05); transition: 0.18s ease; }
     .t-vbs-tab.active, .t-vbs-tab:hover { background: var(--t-accent); border-color: var(--t-accent); color: var(--t-white); }
     .t-vbs-panel { display: none; background: var(--t-card); border: 1px solid var(--t-border); padding: 26px; }
     .t-vbs-panel.active { display: block; }
@@ -394,7 +430,7 @@
 <!-- БЛОК 6: ЧАСТЫЕ ВОПРОСЫ (FAQ) -->
 <section class="t-vbs-root t-vbs-sec t-vbs-sec-alt" id="vbs-faq" itemscope itemtype="https://schema.org/FAQPage">
   <style>
-    .t-vbs-faq-box { border: 1px solid var(--t-border); background: var(--t-card); margin-bottom: 12px; }
+    .t-vbs-faq-box { border: 1px solid var(--t-border); background: var(--t-card); margin-bottom: 12px; border-radius: 14px; box-shadow: 0 1px 2px rgba(15,27,46,0.05), 0 6px 16px rgba(15,27,46,0.06); overflow: hidden; }
     .t-vbs-faq-btn { width: 100%; padding: 18px 22px; background: none; border: none; color: var(--t-text); font-family: 'Oswald', sans-serif; font-size: 18px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .t-vbs-faq-icon { color: var(--t-accent); font-size: 22px; font-weight: 700; transition: transform 0.2s; }
     .t-vbs-faq-box.open .t-vbs-faq-icon { transform: rotate(45deg); }
@@ -463,9 +499,21 @@
     .t-vbs-contact-lbl { font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--t-accent); margin-bottom: 4px; }
     .t-vbs-contact-val { font-size: 17px; font-weight: 600; color: var(--t-text); text-decoration: none; }
     .t-vbs-contact-val:hover { color: var(--t-accent); }
-    .t-vbs-field { width: 100%; height: 50px; padding: 0 16px; background: var(--t-bg); border: 1px solid var(--t-border); color: var(--t-text); font-family: inherit; font-size: 15px; margin-bottom: 14px; }
-    .t-vbs-field:focus { outline: none; border-color: var(--t-accent); }
+    .t-vbs-field {
+      width: 100%; height: 52px; padding: 0 16px; background: var(--t-card); border: 1px solid var(--t-border);
+      border-radius: 12px; color: var(--t-text); font-family: inherit; font-size: 15px; margin-bottom: 14px;
+      box-shadow: inset 0 1px 2px rgba(15,27,46,0.05), 0 1px 2px rgba(15,27,46,0.04);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      -webkit-appearance: none; appearance: none;
+    }
+    .t-vbs-field::placeholder { color: #8b98ad; }
+    .t-vbs-field:focus {
+      outline: none; border-color: var(--t-accent);
+      box-shadow: 0 0 0 4px rgba(0,57,166,0.14), inset 0 1px 2px rgba(15,27,46,0.04);
+    }
+    select.t-vbs-field { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23566680' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
     .t-vbs-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--t-muted); margin-bottom: 18px; cursor: pointer; }
+    .t-vbs-check input[type="checkbox"] { width: 18px; height: 18px; margin: 1px 0 0 0; flex: 0 0 auto; accent-color: var(--t-accent); cursor: pointer; }
     .t-vbs-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .t-vbs-legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--t-border); font-size: 12px; color: var(--t-muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
     .t-vbs-contact-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
