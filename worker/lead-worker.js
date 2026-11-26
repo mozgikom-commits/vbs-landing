@@ -8,7 +8,7 @@
  */
 
 const ALLOWED_ORIGIN = 'https://mozgikom-commits.github.io';
-const ALLOWED_REFERER_PREFIX = 'https://mozgikom-commits.github.io/vbs-landing/';
+const ALLOWED_REFERER_HOST = 'https://mozgikom-commits.github.io/';
 
 const MIN_FILL_MS = 2500;          // быстрее человек форму не заполнит
 const MAX_AGE_MS = 60 * 60 * 1000; // вкладка, открытая час назад, уже не считается
@@ -71,7 +71,9 @@ export default {
 
     const referer = request.headers.get('Referer') || '';
     const originOk = origin === ALLOWED_ORIGIN;
-    const refererOk = !referer || referer.indexOf(ALLOWED_REFERER_PREFIX) === 0;
+    // Браузер по умолчанию режет Referer до корня (strict-origin-when-cross-origin),
+    // поэтому проверяем только хост, а не путь до /vbs-landing/.
+    const refererOk = !referer || referer.indexOf(ALLOWED_REFERER_HOST) === 0;
     if (!originOk || !refererOk) {
       return json({ ok: false, error: 'forbidden_origin' }, 403, cors);
     }
