@@ -380,7 +380,6 @@
         <p class="t-vbs-lead" style="margin-bottom:28px;">Официальные представители Министерства обороны Российской Федерации по Октябрьскому району Приморского края.</p>
         <div class="t-vbs-hud-box" style="background:rgba(29,33,27,0.92);">
           <div class="t-vbs-contact-item"><div class="t-vbs-contact-lbl">Территория набора</div><div class="t-vbs-contact-val">Приморский край, Октябрьский муниципальный округ (с. Покровка)</div></div>
-          <div class="t-vbs-contact-item"><div class="t-vbs-contact-lbl">Телефон для консультаций</div><a href="tel:+78000000000" class="t-vbs-contact-val">+7 (___) ___-__-__</a></div>
           <div class="t-vbs-contact-item"><div class="t-vbs-contact-lbl">Мессенджеры</div><div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;"><a href="https://t.me" target="_blank" class="t-vbs-btn-outline" style="min-height:42px;padding:8px 18px;font-size:14px;">Telegram</a><a href="https://wa.me" target="_blank" class="t-vbs-btn-outline" style="min-height:42px;padding:8px 18px;font-size:14px;">WhatsApp</a></div></div>
           <div class="t-vbs-contact-item"><div class="t-vbs-contact-lbl">Режим работы</div><div class="t-vbs-contact-val" style="font-size:16px;">Ежедневно с 09:00 до 18:00 (время Владивостока)</div></div>
         </div>
@@ -403,6 +402,7 @@
           <label class="t-vbs-check"><input type="checkbox" required checked><span>Согласен на обработку персональных данных для получения консультации.</span></label>
           <button type="submit" class="t-vbs-btn-primary" style="width:100%;">Подать заявку на службу</button>
           <div id="tVbsSuccessMsg" style="display:none;margin-top:14px;padding:12px;background:rgba(109,124,89,0.25);border:1px solid var(--t-olive);color:var(--t-white);font-size:14px;text-align:center;">Заявка успешно отправлена! Представитель свяжется с вами в ближайшее время.</div>
+          <div id="tVbsErrorMsg" style="display:none;margin-top:14px;padding:12px;background:rgba(232,111,28,0.15);border:1px solid var(--t-accent);color:var(--t-white);font-size:14px;text-align:center;"></div>
         </form>
       </div>
     </div>
@@ -421,10 +421,63 @@
       document.getElementById(panelId).classList.add('active');
       evt.currentTarget.classList.add('active');
     }
+    /* ==== ОТПРАВКА ЗАЯВОК В TELEGRAM ==== */
+    var TG_BOT_TOKEN = ''; /* токен бота от @BotFather */
+    var TG_CHAT_ID   = ''; /* id чата или канала, куда падают заявки */
+
     document.getElementById('tVbsLeadForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      document.getElementById('tVbsSuccessMsg').style.display = 'block';
-      this.reset();
+      var form = this;
+      var btn    = form.querySelector('button[type="submit"]');
+      var okMsg  = document.getElementById('tVbsSuccessMsg');
+      var errMsg = document.getElementById('tVbsErrorMsg');
+
+      okMsg.style.display = 'none';
+      errMsg.style.display = 'none';
+
+      var name  = form.querySelector('[name="name"]').value.trim();
+      var phone = form.querySelector('[name="phone"]').value.trim();
+      var age   = form.querySelector('[name="age"]').value.trim();
+      var role  = form.querySelector('[name="role"]').value || 'не выбрано';
+
+      if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
+        errMsg.textContent = 'Отправка временно недоступна. Попробуйте позже.';
+        errMsg.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      var btnLabel = btn.textContent;
+      btn.textContent = 'Отправка…';
+
+      var text = [
+        '🔔 Новая заявка — ВБС, Приморский край',
+        '👤 Имя: ' + name,
+        '📞 Телефон: ' + phone,
+        '🎂 Возраст: ' + age,
+        '🎯 Направление: ' + role,
+        '🕒 ' + new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Vladivostok' }) + ' (Владивосток)'
+      ].join('\n');
+
+      fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, disable_web_page_preview: true })
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (!res || !res.ok) throw new Error(res && res.description ? res.description : 'Telegram error');
+          okMsg.style.display = 'block';
+          form.reset();
+        })
+        .catch(function() {
+          errMsg.textContent = 'Не удалось отправить заявку. Проверьте связь и попробуйте ещё раз.';
+          errMsg.style.display = 'block';
+        })
+        .then(function() {
+          btn.disabled = false;
+          btn.textContent = btnLabel;
+        });
     });
   </script>
 </footer>
