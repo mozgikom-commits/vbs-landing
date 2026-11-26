@@ -78,22 +78,9 @@
   /* Акцентное слово в заголовке */
   .t-vbs-hl { color: var(--t-accent); }
 
-  /* Первый экран — тёмное фото, поэтому всё поверх него светлое */
-  @media (min-width: 861px) {
-  .t-vbs-hero .t-vbs-brand-name { color: var(--t-white); }
-  .t-vbs-hero .t-vbs-brand-sub { color: rgba(255,255,255,0.78); }
-  .t-vbs-hero .t-vbs-headerbar { border-bottom-color: rgba(255,255,255,0.22); }
-  .t-vbs-hero .t-vbs-h1 { color: var(--t-white); }
-  .t-vbs-hero .t-vbs-lead { color: rgba(255,255,255,0.86); }
-  .t-vbs-hero .t-vbs-kicker { color: var(--t-white); background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.42); }
-  .t-vbs-hero .t-vbs-btn-primary { background: var(--t-white); color: var(--t-text); }
-  .t-vbs-hero .t-vbs-btn-primary:hover { background: var(--t-red); color: var(--t-white); }
-  .t-vbs-hero .t-vbs-btn-outline { color: var(--t-white); border-color: rgba(255,255,255,0.5); }
-  .t-vbs-hero .t-vbs-btn-outline:hover { background: var(--t-white); border-color: var(--t-white); color: var(--t-text); }
-  .t-vbs-hero .t-vbs-header-cta { background: var(--t-white); border-color: var(--t-white); color: var(--t-text); }
-  .t-vbs-hero .t-vbs-header-cta:hover { background: var(--t-red); border-color: var(--t-red); color: var(--t-white); }
-  .t-vbs-hero .t-vbs-hl { color: #9cc0ff; }
-  }
+  /* Первый экран светлый: фото осталось подложкой справа, текст тёмный */
+  .t-vbs-hero .t-vbs-h1 { max-width: 700px; }
+  .t-vbs-hero .t-vbs-headerbar { border-bottom-color: var(--t-border); }
 
   @media (max-width: 640px) {
     .t-vbs-sec { padding: 48px 0; }
@@ -110,7 +97,7 @@
     .t-vbs-hero {
       padding: 96px 0 76px;
       background:
-        linear-gradient(90deg, rgba(9,20,42,0.88) 0%, rgba(9,20,42,0.62) 46%, rgba(9,20,42,0.10) 100%),
+        linear-gradient(90deg, rgba(245,247,251,1) 0%, rgba(245,247,251,0.99) 46%, rgba(245,247,251,0.74) 66%, rgba(245,247,251,0.06) 100%),
         url('hero.webp') right center / cover no-repeat,
         var(--t-bg);
       border-bottom: 2px solid var(--t-accent);
