@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<title>Плакат 2 — типографический</title>
+<style>
+  @font-face { font-family: 'Bebas'; src: url('fonts/BebasNeue.ttf') format('truetype'); }
+  @font-face { font-family: 'Oswald'; src: url('fonts/Oswald.ttf') format('truetype'); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1240px; height: 1754px; }
+  body { font-family: 'Oswald', sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; }
+  .page { position: relative; width: 1240px; height: 1754px; overflow: hidden; background: #ffffff; color: #0b1220; }
+
+  .rule-top { position: absolute; left: 70px; right: 70px; top: 78px; height: 1px; background: #d2dbe8; }
+  .rule-bot { position: absolute; left: 70px; right: 70px; bottom: 70px; height: 1px; background: #d2dbe8; }
+  .cap { position: absolute; left: 72px; top: 40px; font-family: 'Bebas', sans-serif; font-size: 22px; letter-spacing: .3em; color: #8b98ad; }
+  .cap-r { position: absolute; right: 72px; top: 40px; font-family: 'Bebas', sans-serif; font-size: 23px; letter-spacing: .34em; color: #8b98ad; }
+
+  .giant { position: absolute; left: 26px; top: 120px; height: 1080px;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    font-family: 'Bebas', sans-serif; font-size: 270px; line-height: .76; letter-spacing: -.02em;
+    color: #eef2f8; }
+
+  .panel { position: absolute; left: 330px; top: 190px; width: 430px; height: 750px;
+    background: #eef2f8 url('../hero.webp') 60% 32% / cover no-repeat;
+    box-shadow: 0 22px 56px rgba(11,18,32,.18); }
+  .panel::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(11,18,32,.08); }
+
+  .side { position: absolute; left: 800px; top: 200px; writing-mode: vertical-rl;
+    font-family: 'Bebas', sans-serif; font-size: 36px; letter-spacing: .3em; color: #0039a6; }
+  .side2 { position: absolute; left: 856px; top: 200px; writing-mode: vertical-rl;
+    font-family: 'Bebas', sans-serif; font-size: 36px; letter-spacing: .3em; color: #c6cfdd; }
+
+  .emblem { position: absolute; right: 96px; top: 196px; width: 132px; height: 132px; }
+
+  .h1 { position: absolute; left: 70px; top: 1010px; font-family: 'Bebas', sans-serif; font-size: 168px; line-height: .84; letter-spacing: .01em; color: #0b1220; }
+  .h1 em { display: block; font-style: normal; font-size: 112px; color: #0039a6; margin-top: 6px; }
+
+  .sub { position: absolute; left: 74px; top: 1268px; font-size: 25px; letter-spacing: .14em; color: #52617a; text-transform: uppercase; }
+
+  .row { position: absolute; left: 74px; bottom: 236px; display: flex; gap: 60px; align-items: flex-end; }
+  .num b { display: block; font-family: 'Bebas', sans-serif; font-size: 92px; line-height: .9; color: #d52b1e; }
+  .num span { display: block; font-size: 19px; letter-spacing: .06em; color: #52617a; margin-top: 8px; }
+  .num.blue b { color: #0039a6; }
+
+  .qr { position: absolute; right: 74px; bottom: 232px; text-align: center; }
+  .qr img { width: 176px; height: 176px; display: block; }
+  .qr span { display: block; margin-top: 10px; font-size: 16px; letter-spacing: .16em; color: #8b98ad; text-transform: uppercase; }
+
+  .addr { position: absolute; left: 74px; bottom: 106px; font-size: 21px; letter-spacing: .12em; color: #52617a; text-transform: uppercase; }
+  .tri { position: absolute; left: 74px; bottom: 84px; width: 300px; height: 6px;
+    background: linear-gradient(90deg, #ffffff 0 33%, #0039a6 33% 66%, #d52b1e 66% 100%);
+    box-shadow: 0 0 0 1px #e2e8f1; }
+</style></head>
+<body><div class="page">
+  <div class="rule-top"></div>
+  <div class="cap">ВОЙСКА БЕСПИЛОТНЫХ СИСТЕМ</div>
+
+  <div class="giant">ВБСВБС</div>
+
+  <div class="panel"></div>
+
+  <div class="side">100% БПЛА</div>
+  <div class="side2">ДИПЛОМ БВС</div>
+
+  <img class="emblem" src="../logo.png" alt="">
+
+  <div class="h1">СЛУЖБА<em>ПО КОНТРАКТУ</em></div>
+  <div class="sub">специальный контракт от 1 года · только войска БПЛА</div>
+
+  <div class="row">
+    <div class="num"><b>2 000 000 ₽</b><span>единовременно при заключении</span></div>
+    <div class="num blue"><b>210 000 ₽</b><span>в месяц в зоне СВО</span></div>
+  </div>
+
+  <div class="qr"><img src="img/qr.png" alt="QR"><span>заявка онлайн</span></div>
+
+  <div class="tri"></div>
+  <div class="addr">Приморский край, Октябрьский район, с. Покровка · пункт отбора</div>
+  <div class="rule-bot"></div>
+</div></body></html>

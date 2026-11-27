@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<title>Плакат 3 — кинопостер</title>
+<style>
+
+  @font-face { font-family: 'Bebas'; src: url('fonts/BebasNeue.ttf') format('truetype'); }
+  @font-face { font-family: 'Russo'; src: url('fonts/RussoOne.ttf') format('truetype'); }
+  @font-face { font-family: 'Oswald'; src: url('fonts/Oswald.ttf') format('truetype'); }
+  @font-face { font-family: 'InterVar'; src: url('fonts/Inter.ttf') format('truetype'); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1240px; height: 1754px; }
+  body { font-family: 'Oswald', sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; }
+  .page { position: relative; width: 1240px; height: 1754px; overflow: hidden; }
+
+  .page { background: #08090c; color: #f2f4f0; }
+  .smoke { position: absolute; inset: 0;
+    background:
+      radial-gradient(90% 60% at 50% 26%, rgba(84,110,160,.35) 0%, rgba(8,9,12,0) 60%),
+      radial-gradient(70% 50% at 18% 78%, rgba(0,57,166,.28) 0%, rgba(8,9,12,0) 65%),
+      radial-gradient(60% 45% at 84% 84%, rgba(213,43,30,.20) 0%, rgba(8,9,12,0) 62%); }
+  .grain { position: absolute; inset: 0; opacity: .35; mix-blend-mode: overlay;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px); }
+
+  .photo { position: absolute; left: 50%; transform: translateX(-50%); top: 190px; width: 900px; height: 900px;
+    background: url('../hero.webp') 55% 30% / cover no-repeat;
+    -webkit-mask-image: radial-gradient(78% 72% at 50% 42%, #000 52%, transparent 88%);
+            mask-image: radial-gradient(78% 72% at 50% 42%, #000 52%, transparent 88%);
+    filter: contrast(1.08) saturate(.9); }
+  .photo-shade { position: absolute; left: 50%; transform: translateX(-50%); top: 190px; width: 900px; height: 900px;
+    background: linear-gradient(180deg, rgba(8,9,12,.25) 0%, rgba(8,9,12,0) 35%, rgba(8,9,12,.85) 88%); }
+
+  .top { position: absolute; left: 0; right: 0; top: 62px; text-align: center; }
+  .top .em { width: 92px; height: 92px; display: inline-block; }
+  .top .ln { font-family: 'Bebas', sans-serif; font-size: 24px; letter-spacing: .42em; color: #9aa4b5; margin-top: 14px; }
+
+  .title { position: absolute; left: 0; right: 0; top: 980px; text-align: center;
+    font-family: 'Bebas', sans-serif; font-size: 196px; line-height: .82; letter-spacing: .02em; color: #f7f9fc; }
+  .title .red { color: #d52b1e; }
+
+  .sub { position: absolute; left: 0; right: 0; top: 1340px; text-align: center;
+    font-family: 'Bebas', sans-serif; font-size: 46px; letter-spacing: .34em; color: #9aa4b5; }
+
+  .credits { position: absolute; left: 0; right: 0; top: 1430px; text-align: center;
+    font-size: 24px; letter-spacing: .12em; color: #cdd4e0; text-transform: uppercase; }
+  .credits b { color: #e04a3a; font-weight: 500; }
+
+  .line { position: absolute; left: 50%; transform: translateX(-50%); top: 1496px; width: 320px; height: 3px;
+    background: linear-gradient(90deg, transparent, #d52b1e 20%, #d52b1e 80%, transparent); }
+
+  .bottom { position: absolute; left: 84px; right: 84px; bottom: 70px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .bottom .addr { font-size: 21px; letter-spacing: .14em; color: #7f8899; text-transform: uppercase; }
+  .bottom .addr b { display: block; font-family: 'Bebas', sans-serif; font-size: 34px; letter-spacing: .06em; color: #e8ecf3; }
+  .qr { text-align: center; }
+  .qr img { width: 150px; height: 150px; display: block; border: 3px solid #e8ecf3; background: #fff; }
+  .qr span { display: block; margin-top: 8px; font-size: 15px; letter-spacing: .18em; color: #7f8899; text-transform: uppercase; }
+</style></head>
+<body><div class="page">
+  <div class="smoke"></div>
+  <div class="photo"></div>
+  <div class="photo-shade"></div>
+  <div class="grain"></div>
+
+  <div class="top">
+    <img class="em" src="../logo.png" alt="">
+    <div class="ln">МИНОБОРОНЫ РОССИИ · ПРИМОРСКИЙ КРАЙ</div>
+  </div>
+
+  <div class="title">ВОЙСКА<br><span class="red">БПЛА</span></div>
+  <div class="sub">СЛУЖБА ПО КОНТРАКТУ</div>
+
+  <div class="credits">
+    2 000 000 ₽ ЕДИНОВРЕМЕННО &nbsp;•&nbsp; ОТ 210 000 ₽/МЕС. В ЗОНЕ СВО &nbsp;•&nbsp; <b>41 ГАРАНТИЯ</b> &nbsp;•&nbsp; С. ПОКРОВКА
+  </div>
+  <div class="line"></div>
+
+  <div class="bottom">
+    <div class="addr"><b>ПРИМОРСКИЙ КРАЙ, С. ПОКРОВКА</b>Октябрьский район · пункт отбора</div>
+    <div class="qr"><img src="img/qr.png" alt="QR"><span>заявка онлайн</span></div>
+  </div>
+</div></body></html>
